@@ -31,12 +31,12 @@ local gametSettings = {
 	playerblocktop = false, --Also handles other NPCs walking atop this NPC.
 
 	nohurt=false,
-	nogravity = false,
-	noblockcollision = false,
+	nogravity = true,
+	noblockcollision = true,
 	nofireball = false,
 	noiceball = false,
 	noyoshi= false,
-	nowaterphysics = false,
+	nowaterphysics = true,
 	--Various interactions
 	jumphurt = false, --If true, spiny-like
 	spinjumpsafe = false, --If true, prevents player hurt when spinjumping
