@@ -2,12 +2,12 @@
 local npcManager = require("npcManager")
 
 --Create the library table
-local sampleNPC = {}
+local gamet = {}
 --NPC_ID is dynamic based on the name of the library file
 local npcID = NPC_ID
 
 --Defines NPC config for our NPC. You can remove superfluous definitions.
-local sampleNPCSettings = {
+local gametSettings = {
 	id = npcID,
 	--Sprite size
 	gfxheight = 34,
@@ -71,7 +71,7 @@ local sampleNPCSettings = {
 }
 
 --Applies NPC settings
-npcManager.setNpcSettings(sampleNPCSettings)
+npcManager.setNpcSettings(gametSettings)
 
 --Register the vulnerable harm types for this NPC. The first table defines the harm types the NPC should be affected by, while the second maps an effect to each, if desired.
 npcManager.registerHarmTypes(npcID,
@@ -105,14 +105,14 @@ npcManager.registerHarmTypes(npcID,
 
 
 --Register events
-function sampleNPC.onInitAPI()
-	npcManager.registerEvent(npcID, sampleNPC, "onTickNPC")
-	--npcManager.registerEvent(npcID, sampleNPC, "onTickEndNPC")
-	--npcManager.registerEvent(npcID, sampleNPC, "onDrawNPC")
-	--registerEvent(sampleNPC, "onNPCKill")
+function gamet.onInitAPI()
+	npcManager.registerEvent(npcID, gamet, "onTickNPC")
+	--npcManager.registerEvent(npcID, gamet, "onTickEndNPC")
+	--npcManager.registerEvent(npcID, gamet, "onDrawNPC")
+	--registerEvent(gamet, "onNPCKill")
 end
 
-function sampleNPC.onTickNPC(v)
+function gamet.onTickNPC(v)
 	--Don't act during time freeze
 	if Defines.levelFreeze then return end
 	
@@ -146,4 +146,4 @@ function sampleNPC.onTickNPC(v)
 end
 
 --Gotta return the library table!
-return sampleNPC
+return gamet
