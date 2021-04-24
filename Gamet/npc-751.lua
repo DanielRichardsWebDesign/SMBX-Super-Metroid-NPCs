@@ -6,7 +6,7 @@ local gamet = {}
 --NPC_ID is dynamic based on the name of the library file
 local npcID = NPC_ID
 
-local intersectCount = 0
+local intersectFlag
 
 --Defines NPC config for our NPC. You can remove superfluous definitions.
 local gametSettings = {
@@ -154,10 +154,10 @@ function gamet.onTickNPC(v)
 	v.speedY = -6
 
 	if (v.y <= player.y) then
-		intersectCount = intersectCount + 1
+		intersectFlag = true
 	end
 
-	if intersectCount > 0 then
+	if intersectFlag == true then
 		v.speedX = -6
 		v.speedY = 0
 	end
@@ -165,7 +165,12 @@ function gamet.onTickNPC(v)
 	-- Speed when going up before reaching player Y position
 	Text.print("Gamet Y: " .. v.y, 100, 100)
 	Text.print("Player Y: " .. player.y, 500, 100)
-	Text.print("Intersect Count: " .. intersectCount, 100, 300)
+
+	-- if intersectFlag == true then
+	-- 	Text.print("Intersect Flag: True", 100, 300)
+	-- else
+	-- 	Text.print("Intersect Flag: False", 100, 300)
+	-- end
 end
 
 --Gotta return the library table!
