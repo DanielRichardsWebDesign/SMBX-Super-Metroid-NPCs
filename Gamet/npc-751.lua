@@ -6,6 +6,8 @@ local gamet = {}
 --NPC_ID is dynamic based on the name of the library file
 local npcID = NPC_ID
 
+local intersectCount = 0
+
 --Defines NPC config for our NPC. You can remove superfluous definitions.
 local gametSettings = {
 	id = npcID,
@@ -142,37 +144,28 @@ function gamet.onTickNPC(v)
 	end
 	
 	-- Flag that checks for if the player coordinates intersects with Gamet
-	local intersectFlag = false
 
 	-- Stop at player Y position
-	if intersectFlag == false then 
-		v.speedX = 0
-		v.speedY = -6
+	-- if intersectFlag == false then 
+		
+	-- end
+
+	v.speedX = 0
+	v.speedY = -6
+
+	if (v.y <= player.y) then
+		intersectCount = intersectCount + 1
 	end
 
-	if v.y <= player.y then
-		intersectFlag = true
-	end
-
-	if intersectFlag == true then
-		intersectFlag = true
-		v.speedY = 0
+	if intersectCount > 0 then
 		v.speedX = -6
+		v.speedY = 0
 	end
 
 	-- Speed when going up before reaching player Y position
 	Text.print("Gamet Y: " .. v.y, 100, 100)
 	Text.print("Player Y: " .. player.y, 500, 100)
-	if intersectFlag == false then
-		Text.print("Intersect Flag: " .. "False", 100, 300)
-	else
-		Text.print("Intersect Flag: " .. "True", 100, 300)
-	end
-
-	--Execute main AI. This template just jumps when it touches the ground.
-	-- if v.collidesBlockBottom then
-	-- 	v.speedY = -6
-	-- end
+	Text.print("Intersect Count: " .. intersectCount, 100, 300)
 end
 
 --Gotta return the library table!
