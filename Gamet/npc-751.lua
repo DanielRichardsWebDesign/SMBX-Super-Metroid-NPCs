@@ -154,10 +154,10 @@ function gamet.onTickNPC(v)
 	v.speedY = -6
 
 	if (v.y <= player.y) then
-		intersectFlag = true
+		v.intersectFlag = true
 	end
 
-	if intersectFlag == true then
+	if v.intersectFlag == true then
 		v.speedX = -6
 		v.speedY = 0
 	end
