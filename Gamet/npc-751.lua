@@ -153,6 +153,13 @@ function gamet.onTickNPC(v)
 	v.speedX = 0
 	v.speedY = -6
 
+	-- If player 2 exists, than their Y coordinates must be accounted for as well
+	if player2 ~= nil then
+		if (v.y <= player.y or v.y <= player2.y) then
+			v.intersectFlag = true
+		end
+	end
+
 	if (v.y <= player.y) then
 		v.intersectFlag = true
 	end
