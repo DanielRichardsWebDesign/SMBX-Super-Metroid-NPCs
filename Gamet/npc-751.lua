@@ -68,6 +68,8 @@ local gametSettings = {
 	--lightcolor = Color.white,
 
 	--Define custom properties below
+
+
 }
 
 --Applies NPC settings
@@ -139,10 +141,38 @@ function gamet.onTickNPC(v)
 		--Handling
 	end
 	
-	--Execute main AI. This template just jumps when it touches the ground.
-	if v.collidesBlockBottom then
+	-- Flag that checks for if the player coordinates intersects with Gamet
+	local intersectFlag = false
+
+	-- Stop at player Y position
+	if intersectFlag == false then 
+		v.speedX = 0
 		v.speedY = -6
 	end
+
+	if v.y <= player.y then
+		intersectFlag = true
+	end
+
+	if intersectFlag == true then
+		intersectFlag = true
+		v.speedY = 0
+		v.speedX = -6
+	end
+
+	-- Speed when going up before reaching player Y position
+	Text.print("Gamet Y: " .. v.y, 100, 100)
+	Text.print("Player Y: " .. player.y, 500, 100)
+	if intersectFlag == false then
+		Text.print("Intersect Flag: " .. "False", 100, 300)
+	else
+		Text.print("Intersect Flag: " .. "True", 100, 300)
+	end
+
+	--Execute main AI. This template just jumps when it touches the ground.
+	-- if v.collidesBlockBottom then
+	-- 	v.speedY = -6
+	-- end
 end
 
 --Gotta return the library table!
